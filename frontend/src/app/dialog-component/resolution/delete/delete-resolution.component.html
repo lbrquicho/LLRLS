@@ -1,0 +1,22 @@
+  <mat-card class="forms" >
+
+        <img class="deletelogo center" [src]="deletelogo">
+        <br>
+    <div style="text-align: center;">
+      <h1>Are you sure???</h1>
+      <p>Do you really want to delete Resoluiton No:  <b>{{data.resolutionNo}}</b> Record?</p>
+      <p>This process cannot be undone</p>
+    </div>
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+        <button class="submitForm resBtn"
+        (click)="onNoClick()" mat-raised-button>
+                    Cancel</button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button class="submitForm delbtn"
+        (click)="deleteRes()" mat-raised-button>
+                    Delete</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+        </mat-card>

@@ -1,0 +1,101 @@
+<mat-card class="lf-card" >
+  <div>
+    <img class="limaylogo" [src]="limaylogo">
+    <h3 class="titleformat">Limay Legislative Records</h3>
+    <h3 class="titleformat">Library System</h3>
+  </div>
+
+  <br>
+
+<form class="loginF"  #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+
+  <div class="pc">
+      <div class="">
+        <mat-form-field appearance="outline" class="mff-format1">
+          <input matInput type="text" name="email" #email="ngModel" [(ngModel)]="model.email" placeholder="Email" [pattern]="emailRegex" required
+          [ngClass]="{'invalid-textbox' :signInForm.submitted && !email.valid }">
+
+          <div *ngIf="signInForm.submitted && email.errors?.pattern">
+          <label class="validation-message">*Invalid email address.</label>
+        </div>
+
+        <div *ngIf="signInForm.submitted && email.errors">
+          <div *ngFor="let x of userDetails.slice(0, 1)">
+            <label class="validation-message" *ngIf="model.email != x.email">
+              *Email Address Does Not Exist!</label>
+          </div>
+        </div>
+        </mat-form-field>
+        </div>
+
+        <div class="">
+          <mat-form-field appearance="outline" class="mff-format1" style="margin-top: 0px;">
+            <input matInput type="password" name="password" #password="ngModel" [(ngModel)]="model.password" placeholder="Password" required minlength="4"
+            [ngClass]="{'invalid-textbox' :signInForm.submitted && !password.valid }">
+
+            <div *ngIf="signInForm.submitted && password.errors?.minlength">
+            <label class="validation-message">*Minimum 4 characters.</label>
+          </div>
+
+            <div  *ngIf="signInForm.submitted && password.errors">
+              <div *ngFor="let x of userDetails.slice(0, 1)">
+                <label class="validation-message" *ngIf="model.password != x.password">
+                  *Password Invalid</label>
+              </div>
+          </div>
+          </mat-form-field>
+          <button mat-raised-button class="loginbutton" type="submit" value="Sign In">LOGIN</button>
+          </div>
+        </div>
+
+
+        <div  class="mobile">
+          <mat-grid-list class="mobile" cols="2" rowHeight="2:1">
+
+            <mat-grid-tile>
+              <div class="">
+                <mat-form-field appearance="outline" class="mff-format1 email">
+                  <input matInput type="text" name="email" #email="ngModel" [(ngModel)]="model.email" placeholder="Email" [pattern]="emailRegex" required
+                  [ngClass]="{'invalid-textbox' :signInForm.submitted && !email.valid }">
+
+                  <div *ngIf="signInForm.submitted && email.errors?.pattern">
+                  <label class="validation-message">*Invalid email address.</label>
+                </div>
+
+                <div *ngIf="signInForm.submitted && email.errors">
+                  <div *ngFor="let x of userDetails.slice(0, 1)">
+                    <label class="validation-message" *ngIf="model.email != x.email">
+                      *Email Address Does Not Exist!</label>
+                  </div>
+                </div>
+                </mat-form-field>
+                </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+              <div class="">
+                <mat-form-field appearance="outline" class="mff-format1" style="margin-top: 0px;">
+                  <input matInput type="password" name="password" #password="ngModel" [(ngModel)]="model.password" placeholder="Password" required minlength="4"
+                  [ngClass]="{'invalid-textbox' :signInForm.submitted && !password.valid }">
+
+                  <div *ngIf="signInForm.submitted && password.errors?.minlength">
+                  <label class="validation-message">*Minimum 4 characters.</label>
+                </div>
+
+                  <div  *ngIf="signInForm.submitted && password.errors">
+                    <div *ngFor="let x of userDetails.slice(0, 1)">
+                      <label class="validation-message" *ngIf="model.password != x.password">
+                        *Password Invalid</label>
+                    </div>
+                </div>
+                </mat-form-field>
+               </div>
+            </mat-grid-tile>
+
+          </mat-grid-list>
+          <button mat-raised-button class="loginbutton" type="submit" value="Sign In">LOGIN</button>
+        </div>
+
+    </form>
+
+    </mat-card>

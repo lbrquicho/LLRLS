@@ -1,0 +1,125 @@
+@media print {
+  :host {
+    display: none;
+  }
+}
+
+.forms{
+  background-color: #f0fd5f35;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 0px !important;
+}
+
+.refNo {
+  text-align: center;
+  margin-top: -5px !important;
+}
+.diaRes{
+  font-weight: bold;
+}
+
+.fphrase{
+  text-align: center;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.rDLabel1{
+  font-weight: bold;
+  margin-left: 17%;
+  margin-right: 17%;
+}
+
+.rDLabel2{
+  font-weight: bold;
+  margin-left: 17%;
+  margin-right: 17%;
+}
+.rDLabel3{
+  margin-LEFT: -150PX;
+}
+.rDLabel4{
+  margin-right: 90px;
+}
+
+.resBtnS {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+.resBtnP {
+  margin-right: 5px;
+  color: white;
+}
+.empPossition{
+  padding-left: 3%;
+}
+
+.forms{
+  height: AUTO;
+  margin-bottom: 2%;
+}
+
+.mat-dialog-container{
+  background-color: #fcf4a3 !important;
+}
+
+.resDesc{
+  width: 100% !important;
+  padding-right: 65px;
+  padding-left: 65px;
+}
+
+.resDescript{
+  border: .5px solid rgba(128, 128, 128, 0.233);
+  border-radius: 1px;
+  cursor: pointer;
+}
+
+.parent {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.aMvm{
+  text-align: center;
+  margin-bottom: 0px !important;
+}
+
+.inASsb{
+  width: 0px !important;
+  height: 0px !important;
+}
+.inAMvm{
+  width: 0px !important;
+  height: 0px !important;
+}
+.inAMm{
+  width: 0px !important;
+  height: 0px !important;
+
+}
+
+.htmlContentR{
+  display: flex;
+  justify-content: center;
+  margin-right: 60px;
+  margin-left: 60px;
+}
+.appDescTdialog{
+  text-align: center;
+}
+
+.hiddenFormat{
+display: none;
+}
+
+pdf-viewer {
+  display: block;
+  height: 100%;
+}
+
+

@@ -1,0 +1,138 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap-scss/bootstrap.scss";
+
+html, body { height: 100%;
+
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mobile{
+  display: none;
+}
+.pc{
+  display: block;
+}
+
+
+//START: Mobile CSS
+
+/* iPhone 6, 7, 8 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px)
+  and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+  /* Styles */
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-height: 667px)
+    and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+      .mobile{
+        display: block;
+      }
+      .pc{
+        display: none;
+      }
+
+      body {
+          margin-top: -8%;
+          padding-top: 8%;
+      }
+  }
+
+    /* iPhone 6+, 7+, 8+ ----------- */
+  @media only screen and (min-device-width: 736px) and (max-device-height: 414px)
+  and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+
+  }
+
+  @media only screen and (min-device-width: 414px) and (max-device-height: 736px)
+    and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+      .mobile{
+        display: block;
+      }
+      .pc{
+        display: none;
+      }
+
+      body {
+          margin-top: -25% !important;
+          padding-top: 25% !important;
+      }
+
+  }
+
+
+  /* iPhone X ----------- */
+    @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and
+    (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+
+    }
+
+    @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and
+    (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+      .mobile{
+        display: block;
+      }
+      .pc{
+        display: none;
+      }
+
+      body {
+          margin-top: -25%;
+          padding-top: 25% !important;
+      }
+    }
+
+    /* iPhone XR ----------- */
+      @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and
+      (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+        /* Styles */
+        }
+
+        @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and
+        (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+          .mobile{
+            display: block;
+          }
+          .pc{
+            display: none;
+          }
+
+          body {
+            .mobile{
+              display: block;
+            }
+            .pc{
+              display: none;
+            }
+              margin-top: -25%;
+              padding-top: 25% !important;
+          }
+        }
+
+    /* iPhone XS Max ----------- */
+        @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and
+      (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+        /* Styles */
+        }
+
+        @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and
+        (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+          .mobile{
+            display: block;
+          }
+          .pc{
+            display: none;
+          }
+
+          body {
+            .mobile{
+              display: block;
+            }
+            .pc{
+              display: none;
+            }
+              margin-top: -25%;
+              padding-top: 25% !important;
+          }
+        }
+
+//END: Mobile CSS

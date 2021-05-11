@@ -1,0 +1,571 @@
+<mat-card class="forms" >
+  <mat-tab-group [selectedIndex]="0">
+    <mat-tab label="Resolution No. & Members">
+        <form  #resolutionEditForm="ngForm" (ngSubmit)="updateResForm(resolutionEditForm)">
+
+          <mat-grid-list cols="4" rowHeight="3:1">
+
+            <mat-grid-tile>
+              <div class="example-container">
+                <mat-form-field appearance="fill">
+
+                  <mat-label>Select date:</mat-label>
+                  <input matInput [matDatepicker]="pickerO" #rDate="ngModel" required [(ngModel)]="data.rDate" name="rDate"
+                  [ngClass]="{'invalid-textbox' :resolutionEditForm.submitted && !rDate.valid }">
+                  <mat-datepicker-toggle matSuffix [for]="pickerO"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerO></mat-datepicker>
+
+                  <div *ngIf="resolutionEditForm.submitted && !rDate.valid">
+                    <label class="validation-message">Date is required.</label>
+                  </div>
+
+                </mat-form-field>
+                </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+              <div class="example-container">
+                <mat-form-field appearance="fill">
+                  <mat-label>Select time:</mat-label>
+                  <input matInput type="time" #rTime="ngModel" required [(ngModel)]="data.rTime" name="rTime" mdbInput
+                  [ngClass]="{'invalid-textbox' :resolutionEditForm.submitted && !rTime.valid }">
+                  <div *ngIf="resolutionEditForm.submitted && !rTime.valid">
+                    <label class="validation-message">Time is required.</label>
+                  </div>
+                </mat-form-field>
+                </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+              <div class="example-container">
+                <mat-form-field appearance="fill">
+                  <mat-label>Resolution No: </mat-label>
+                  <input matInput #resolutionNo="ngModel" required [(ngModel)]="data.resolutionNo" name="resolutionNo"
+                  [ngClass]="{'invalid-textbox' :resolutionEditForm.submitted && !resolutionNo.valid }">
+                  <div *ngIf="resolutionEditForm.submitted && !resolutionNo.valid">
+                    <label class="validation-message">Resolution Number is required.</label>
+                  </div>
+                </mat-form-field>
+                </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+              <div class="example-container">
+                <mat-form-field appearance="fill">
+                  <mat-label>Res. Classification:</mat-label>
+                  <mat-select #rClassification="ngModel" required [(ngModel)]="data.rClassification" name="rClassification">
+                    <mat-option *ngFor="let class of resoClass" [value]="class">
+                      {{class}}
+                    </mat-option>
+                  </mat-select>
+                  <div *ngIf="resolutionEditForm.submitted && !rClassification.valid">
+                    <label class="validation-message">Classification is required.</label>
+                  </div>
+                </mat-form-field>
+                </div>
+            </mat-grid-tile>
+
+       </mat-grid-list>
+
+       <mat-grid-list  cols="2" rowHeight="5:1" *ngIf="!(data.rClassification !== 'Authorizing the Mun. Mayor'
+       || data.rClassification !== 'Subdivision Approval' || data.rClassification !== 'Financial Assistance'
+       || data.rClassification !== 'Human Resources'  || data.rClassification !== 'Requesting'
+       || data.rClassification !== 'Supplemental Budget' || data.rClassification !== 'Annual Budget'
+       || data.rClassification !== 'Municipal Properties')">
+
+        <mat-grid-tile>
+          <mat-checkbox name="isTagalog" #isTagalog="ngModel" [(ngModel)]="data.isTagalog">
+            Resolution is in Tagalog
+         </mat-checkbox>
+        </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-checkbox name="pursuant" #pursuant="ngModel" [(ngModel)]="data.isPursuantTo">
+              Pursuant to RA7160
+           </mat-checkbox>
+          </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list  cols="2" rowHeight="5:1" *ngIf="!(data.rClassification === 'Authorizing the Mun. Mayor'
+  || data.rClassification === 'Subdivision Approval' || data.rClassification === 'Financial Assistance'
+  || data.rClassification === 'Human Resources'  || data.rClassification !== 'Requesting'
+  || data.rClassification !== 'Supplemental Budget' || data.rClassification !== 'Annual Budget'
+  || data.rClassification !== 'Municipal Properties')">
+
+   <mat-grid-tile>
+     <mat-checkbox name="isTagalog" #isTagalog="ngModel" [(ngModel)]="data.isTagalog">
+       Resolution is in Tagalog
+    </mat-checkbox>
+   </mat-grid-tile>
+
+     <mat-grid-tile>
+       <mat-checkbox name="pursuant" #pursuant="ngModel" [(ngModel)]="data.isPursuantTo">
+         Pursuant to RA7160
+      </mat-checkbox>
+     </mat-grid-tile>
+</mat-grid-list>
+
+  <mat-grid-list  cols="3" rowHeight="3:1" *ngIf="data.rClassification == 'Authorizing the Mun. Mayor'">
+    <mat-grid-tile *ngIf="data.rClassification == 'Authorizing the Mun. Mayor'">
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Sub Classification:</mat-label>
+          <mat-select #rSubClassification="ngModel" [(ngModel)]="data.rSubClassification" name="rSubClassification">
+            <mat-option *ngFor="let sub of authMayor" [value]="sub">
+              {{sub}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+    </mat-grid-tile>
+
+
+
+    <mat-grid-tile>
+      <mat-checkbox name="isTagalog" #isTagalog="ngModel" [(ngModel)]="data.isTagalog">
+        Resolution is in Tagalog
+     </mat-checkbox>
+    </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-checkbox name="pursuant" #pursuant="ngModel" [(ngModel)]="data.isPursuantTo">
+          Pursuant to RA7160
+       </mat-checkbox>
+      </mat-grid-tile>
+</mat-grid-list>
+
+
+<mat-grid-list  cols="3" rowHeight="3:1" *ngIf="data.rClassification == 'Subdivision Approval'">
+  <mat-grid-tile *ngIf="data.rClassification == 'Subdivision Approval'">
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Sub Classification:</mat-label>
+        <mat-select #rSubClassification="ngModel" [(ngModel)]="data.rSubClassification" name="rSubClassification">
+          <mat-option *ngFor="let sub of subApp" [value]="sub">
+            {{sub}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+  </mat-grid-tile>
+
+
+
+  <mat-grid-tile>
+    <mat-checkbox name="isTagalog" #isTagalog="ngModel" [(ngModel)]="data.isTagalog">
+      Resolution is in Tagalog
+   </mat-checkbox>
+  </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-checkbox name="pursuant" #pursuant="ngModel" [(ngModel)]="data.isPursuantTo">
+        Pursuant to RA7160
+     </mat-checkbox>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list  cols="3" rowHeight="3:1" *ngIf="data.rClassification == 'Financial Assistance'">
+  <mat-grid-tile *ngIf="data.rClassification == 'Financial Assistance'">
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Sub Classification:</mat-label>
+        <mat-select #rSubClassification="ngModel" [(ngModel)]="data.rSubClassification" name="rSubClassification">
+          <mat-option *ngFor="let sub of subFinancial" [value]="sub">
+            {{sub}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+  </mat-grid-tile>
+
+
+
+  <mat-grid-tile>
+    <mat-checkbox name="isTagalog" #isTagalog="ngModel" [(ngModel)]="data.isTagalog">
+      Resolution is in Tagalog
+   </mat-checkbox>
+  </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-checkbox name="pursuant" #pursuant="ngModel" [(ngModel)]="data.isPursuantTo">
+        Pursuant to RA7160
+     </mat-checkbox>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list  cols="3" rowHeight="3:1" *ngIf="data.rClassification == 'Human Resources'">
+  <mat-grid-tile *ngIf="data.rClassification == 'Human Resources'">
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Sub Classification:</mat-label>
+        <mat-select #rSubClassification="ngModel" [(ngModel)]="data.rSubClassification" name="rSubClassification">
+          <mat-option *ngFor="let sub of subHR" [value]="sub">
+            {{sub}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+  </mat-grid-tile>
+
+
+
+  <mat-grid-tile>
+    <mat-checkbox name="isTagalog" #isTagalog="ngModel" [(ngModel)]="data.isTagalog">
+      Resolution is in Tagalog
+   </mat-checkbox>
+  </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-checkbox name="pursuant" #pursuant="ngModel" [(ngModel)]="data.isPursuantTo">
+        Pursuant to RA7160
+     </mat-checkbox>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list  cols="3" rowHeight="3:1" *ngIf="data.rClassification == 'Requesting'">
+  <mat-grid-tile *ngIf="data.rClassification == 'Requesting'">
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Sub Classification:</mat-label>
+        <mat-select #rSubClassification="ngModel" [(ngModel)]="data.rSubClassification" name="rSubClassification">
+          <mat-option *ngFor="let sub of subRequesting" [value]="sub">
+            {{sub}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+  </mat-grid-tile>
+
+
+
+  <mat-grid-tile>
+    <mat-checkbox name="isTagalog" #isTagalog="ngModel" [(ngModel)]="data.isTagalog">
+      Resolution is in Tagalog
+   </mat-checkbox>
+  </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-checkbox name="pursuant" #pursuant="ngModel" [(ngModel)]="data.isPursuantTo">
+        Pursuant to RA7160
+     </mat-checkbox>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list  cols="3" rowHeight="3:1" *ngIf="data.rClassification == 'Supplemental Budget'">
+  <mat-grid-tile *ngIf="data.rClassification == 'Supplemental Budget'">
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Sub Classification:</mat-label>
+        <mat-select #rSubClassification="ngModel" [(ngModel)]="data.rSubClassification" name="rSubClassification">
+          <mat-option *ngFor="let sub of subBudget" [value]="sub">
+            {{sub}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+  </mat-grid-tile>
+
+
+
+  <mat-grid-tile>
+    <mat-checkbox name="isTagalog" #isTagalog="ngModel" [(ngModel)]="data.isTagalog">
+      Resolution is in Tagalog
+   </mat-checkbox>
+  </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-checkbox name="pursuant" #pursuant="ngModel" [(ngModel)]="data.isPursuantTo">
+        Pursuant to RA7160
+     </mat-checkbox>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list  cols="3" rowHeight="3:1" *ngIf="data.rClassification == 'Annual Budget'">
+  <mat-grid-tile *ngIf="data.rClassification == 'Annual Budget'">
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Sub Classification:</mat-label>
+        <mat-select #rSubClassification="ngModel" [(ngModel)]="data.rSubClassification" name="rSubClassification">
+          <mat-option *ngFor="let sub of subBudget" [value]="sub">
+            {{sub}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+  </mat-grid-tile>
+
+
+
+  <mat-grid-tile>
+    <mat-checkbox name="isTagalog" #isTagalog="ngModel" [(ngModel)]="data.isTagalog">
+      Resolution is in Tagalog
+   </mat-checkbox>
+  </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-checkbox name="pursuant" #pursuant="ngModel" [(ngModel)]="data.isPursuantTo">
+        Pursuant to RA7160
+     </mat-checkbox>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list  cols="3" rowHeight="3:1" *ngIf="data.rClassification == 'Municipal Properties'">
+  <mat-grid-tile *ngIf="data.rClassification == 'Municipal Properties'">
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Sub Classification:</mat-label>
+        <mat-select #rSubClassification="ngModel" [(ngModel)]="data.rSubClassification" name="rSubClassification">
+          <mat-option *ngFor="let sub of subMP" [value]="sub">
+            {{sub}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+  </mat-grid-tile>
+
+
+
+  <mat-grid-tile>
+    <mat-checkbox name="isTagalog" #isTagalog="ngModel" [(ngModel)]="data.isTagalog">
+      Resolution is in Tagalog
+   </mat-checkbox>
+  </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-checkbox name="pursuant" #pursuant="ngModel" [(ngModel)]="data.isPursuantTo">
+        Pursuant to RA7160
+     </mat-checkbox>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+<mat-grid-list cols="3" rowHeight="3:1" *ngIf="data.isPursuantTo">
+
+<mat-grid-tile>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Section: </mat-label>
+      <input matInput name="pSection" #pSection="ngModel" [(ngModel)]="data.pSection">
+    </mat-form-field>
+    </div>
+</mat-grid-tile>
+
+<mat-grid-tile>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Paragraph: </mat-label>
+      <input matInput name="pParagraph" #pParagraph="ngModel" [(ngModel)]="data.pParagraph">
+
+    </mat-form-field>
+    </div>
+</mat-grid-tile>
+
+<mat-grid-tile>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Article: </mat-label>
+      <input matInput name="pArticle" #pArticle="ngModel" [(ngModel)]="data.pArticle">
+
+    </mat-form-field>
+    </div>
+</mat-grid-tile>
+
+<mat-grid-tile>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Chapter: </mat-label>
+      <input matInput name="pChapter" #pChapter="ngModel" [(ngModel)]="data.pChapter">
+
+    </mat-form-field>
+    </div>
+</mat-grid-tile>
+
+<mat-grid-tile>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Title: </mat-label>
+      <input matInput name="pTitle" #pTitle="ngModel" [(ngModel)]="data.pTitle">
+
+    </mat-form-field>
+    </div>
+</mat-grid-tile>
+
+<mat-grid-tile>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Book: </mat-label>
+      <input matInput name="pBook" #pBook="ngModel" [(ngModel)]="data.pBook">
+
+    </mat-form-field>
+    </div>
+</mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list cols="2" rowHeight="6:1">
+
+
+</mat-grid-list>
+
+
+         <hr class="spacer1">
+         <mat-grid-list cols="1" rowHeight="10:1" *ngFor="let x of data.presMem.slice(1, 2)">
+
+         <h2 style="margin-bottom: 0px; text-align: center;"
+         *ngIf="x.memberPos == 'Municipal Vice Mayor'" >Presiding Officer</h2>
+         <h2 style="margin-bottom: 0px; text-align: center;"
+         *ngIf="x.memberPos != 'Municipal Vice Mayor'">Acting Presiding Officer</h2>
+           <mat-grid-tile>
+
+             <mat-label style="margin-left: 30%; width: 4%">HON:</mat-label>
+
+             <input style="margin-left: 1%; width:18%" matInput required [(ngModel)]="x.memberName" name="{{x.memberName}}">
+
+             <mat-form-field style="margin-left:1%; margin-right: 30%; width: 16%;">
+               <mat-select id="memberPos1select" name="{{x.memberPos}}" [(ngModel)]="x.memberPos">
+                 <mat-option *ngFor="let memberPos of memberPosition" [value]="memberPos">{{ memberPos }}</mat-option>
+               </mat-select>
+             </mat-form-field>
+
+           </mat-grid-tile>
+         </mat-grid-list>
+
+         <mat-grid-list cols="1" rowHeight="12:1">
+           <mat-grid-tile>
+             <h2 style="margin-bottom: -10px;">Present Members</h2>
+             </mat-grid-tile>
+         </mat-grid-list>
+
+         <mat-grid-list cols="2" rowHeight="20:1">
+          <mat-grid-tile *ngFor="let x of data.presMem.slice(2, 15)">
+
+            <mat-label style="margin-left: 0%; width: 3%">HON:</mat-label>
+
+              <input style="margin-left: 5%; width:46%" matInput required [(ngModel)]="x.memberName" name="{{x.memberName}}">
+
+              <mat-form-field style="margin-left: 2%; margin-right: 0%; width: 26%">
+                <mat-select id="memberPos2select" name="{{x.memberPos}}" [(ngModel)]="x.memberPos">
+                  <mat-option *ngFor="let memberPos of memberPosition" [value]="memberPos">{{ memberPos }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+
+          </mat-grid-tile>
+
+          </mat-grid-list>
+
+          <mat-grid-list cols="1" rowHeight="14:1">
+            <mat-grid-tile>
+              <h2 style="margin-bottom: -27px;">Absent Members</h2>
+              </mat-grid-tile>
+          </mat-grid-list>
+
+          <mat-grid-list cols="2" rowHeight="20:1" >
+            <mat-grid-tile  *ngFor="let x of data.absMem.slice(1, 15)">
+              <mat-label style="margin-left: 0%; width: 3%">HON:</mat-label>
+
+                <input style="margin-left: 5%; width:40%" matInput required [(ngModel)]="x.memberName" name="{{x.memberName}}">
+
+                <mat-form-field style="margin-left: 2%; margin-right: 0%; width: 26%">
+                  <mat-select id="memberPos2select" name="{{x.memberPos}}" [(ngModel)]="x.memberPos">
+                    <mat-option *ngFor="let memberPos of memberPosition" [value]="memberPos">{{ memberPos }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+            </mat-grid-tile>
+            </mat-grid-list>
+            <br><br>
+                <button mat-raised-button type="submit" value="Form" class="resBtnSave">Save Changes</button>
+                <br>
+        </form>
+           </mat-tab>
+              <mat-tab label="Resolution Description">
+                <form  #resolutionEditForm2="ngForm" (ngSubmit)="updateResForm(resolutionEditForm2)">
+
+                            <mat-grid-list cols="1" style="margin-top: 2%;"
+                            rowHeight="15:1">
+                              <mat-grid-tile>
+                                <h2 style="margin-bottom: -20px !important;">
+                                  RESOLUTION DESCRIPTION</h2>
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                            <mat-grid-list class="resFromEd" cols="1" rowHeight="17:1">
+                              <div [froalaEditor]="options"
+                              [(froalaModel)]="data.resolutionDes">
+                              </div>
+                            </mat-grid-list>
+
+                            <mat-grid-list cols="1" style="margin-top: 2%;"
+                            rowHeight="15:1">
+                              <mat-grid-tile>
+                                <h2 style="margin-bottom: -20px !important;">
+                                  APPROPRIATIONS DESCRIPTION</h2>
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                            <mat-grid-list class="resFromEd" cols="1" rowHeight="17:1">
+                              <div [froalaEditor]="options"
+                              [(froalaModel)]="data.approDes">
+                              </div>
+                            </mat-grid-list>
+
+                            <br><br>
+                            <h2 style="text-align:center; padding-bottom: 20px;">I
+                               HEREBY CERTIFY TO THE CORRECTNESS OF THE FOREGOING RESOLUTION</h2>
+                            <mat-grid-list cols="3" rowHeight='15px' >
+                              <mat-grid-tile >PREPARED BY:</mat-grid-tile>
+                              <mat-grid-tile>ATTESTED BY:</mat-grid-tile>
+                              <mat-grid-tile>APPROVED BY:</mat-grid-tile>
+                            </mat-grid-list>
+                            <mat-grid-list cols="3" rowHeight="3:1">
+                              <mat-grid-tile>
+                                <mat-form-field class="example-full-width" style="width: 250px">
+                                  <mat-label>Secretary to the sanguniang Bayan</mat-label>
+
+                                  <input type="text" matInput #rSecretary="ngModel" required
+                                  [(ngModel)]="data.rSecretary"
+                                   name="rSecretary"
+                                   [ngClass]="{'invalid-textbox' :resolutionEditForm2.submitted && !rSecretary.valid }">
+
+                                    <div *ngIf="resolutionEditForm2.submitted && !rSecretary.valid">
+                                      <label class="validation-message">Secretary Name is required.</label>
+                                    </div>
+                                </mat-form-field>
+                            </mat-grid-tile>
+
+                              <mat-grid-tile>
+                                 <mat-form-field class="example-full-width" style="width: 250px">
+                                    <mat-label>Municipal Vice Mayor (Presiding Officer)</mat-label>
+
+                                    <input type="text" matInput #rViceMayor="ngModel" required
+                                    [(ngModel)]="data.rViceMayor"
+                                    name="rViceMayor"
+                                    [ngClass]="{'invalid-textbox' :resolutionEditForm2.submitted && !rViceMayor.valid }">
+
+                                    <div *ngIf="resolutionEditForm2.submitted && !rViceMayor.valid">
+                                      <label class="validation-message">Municipal Vice Mayor is required.</label>
+                                    </div>
+                                  </mat-form-field>
+                              </mat-grid-tile>
+                              <mat-grid-tile>
+                                <mat-form-field class="example-full-width" style="width: 250px">
+                                  <mat-label>Municipal Mayor of Limay Bataan</mat-label>
+
+                                  <input type="text" matInput #rMayor="ngModel" required
+                                  [(ngModel)]="data.rMayor"
+                                  name="rMayor"
+                                  [ngClass]="{'invalid-textbox' :resolutionEditForm2.submitted && !rMayor.valid }">
+
+                                    <div *ngIf="resolutionEditForm2.submitted && !rMayor.valid">
+                                      <label class="validation-message">Municipal Mayor is required.</label>
+                                    </div>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            </mat-grid-list>
+
+
+                         <br><br>
+                       <button mat-raised-button type="submit" value="Form" class="resBtnSave">Save Changes</button>
+                     <br>
+                  </form>
+              </mat-tab>
+               </mat-tab-group>
+                   </mat-card>

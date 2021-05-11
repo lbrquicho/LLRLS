@@ -1,0 +1,273 @@
+.right {
+  position: absolute;
+  right: 30px;
+}
+.headerLabel{
+  margin-bottom: 0px;
+}
+.userName{
+  margin-right: 20px;
+  font-size: 20px;
+}
+.nav{
+  background: #003100  !important;
+  color: #fff;
+}
+
+.mobile{
+  display: none;
+}
+.pc{
+  display: block;
+}
+
+//START: MOBILE CSS
+
+/* iPhone 6, 7, 8 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px)
+  and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    .mobile{
+      display: block;
+    }
+    .pc{
+      display: none;
+    }
+    .example-spacer {
+      flex: 1 1 auto;
+    }
+    .mat-toolbar.mat-primary{
+      background: #003100  !important;
+      color: #fff;
+    }
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-height: 667px)
+    and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+      .mobile{
+        display: block;
+      }
+      .pc{
+        display: none;
+      }
+      .example-spacer {
+        flex: 1 1 auto;
+      }
+      .mat-toolbar.mat-primary{
+        background: #003100  !important;
+        color: #fff;
+      }
+
+      .userProfileContainer{
+        padding-left: 5px !important;
+      }
+
+      mat-drawer-content {
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+      }
+      app-admin{
+        width: 100%;
+      }
+
+  }
+
+    /* iPhone 6+, 7+, 8+ ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px)
+and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+  .mobile{
+    display: block;
+  }
+  .pc{
+    display: none;
+  }
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  .mat-toolbar.mat-primary{
+    background: #003100  !important;
+    color: #fff;
+  }
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px)
+  and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    .mobile{
+      display: block;
+    }
+    .pc{
+      display: none;
+    }
+    .example-spacer {
+      flex: 1 1 auto;
+    }
+    .mat-toolbar.mat-primary{
+      background: #003100  !important;
+      color: #fff;
+    }
+
+    .userProfileContainer{
+      padding-left: 5px !important;
+    }
+
+    mat-drawer-content {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+    }
+    app-admin{
+      width: 100%;
+    }
+}
+
+ /* iPhone X ----------- */
+ @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and
+ (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+  .mobile{
+    display: block;
+  }
+  .pc{
+    display: none;
+  }
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  .mat-toolbar.mat-primary{
+    background: #003100  !important;
+    color: #fff;
+  }
+ }
+
+ @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and
+  (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    .mobile{
+      display: block;
+    }
+    .pc{
+      display: none;
+    }
+    .example-spacer {
+      flex: 1 1 auto;
+    }
+    .mat-toolbar.mat-primary{
+      background: #003100  !important;
+      color: #fff;
+    }
+
+    .userProfileContainer{
+      padding-left: 5px !important;
+    }
+
+    mat-drawer-content {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+    }
+    app-admin{
+      width: 100%;
+    }
+ }
+
+   /* iPhone XR ----------- */
+   @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and
+   (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    .mobile{
+      display: block;
+    }
+    .pc{
+      display: none;
+    }
+    .example-spacer {
+      flex: 1 1 auto;
+    }
+    .mat-toolbar.mat-primary{
+      background: #003100  !important;
+      color: #fff;
+    }
+     }
+
+     @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and
+     (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+      .mobile{
+        display: block;
+      }
+      .pc{
+        display: none;
+      }
+      .example-spacer {
+        flex: 1 1 auto;
+      }
+      .mat-toolbar.mat-primary{
+        background: #003100  !important;
+        color: #fff;
+      }
+
+      .userProfileContainer{
+        padding-left: 5px !important;
+      }
+
+      mat-drawer-content {
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      app-admin{
+        width: 100%;
+      }
+     }
+
+   /* iPhone XS Max ----------- */
+   @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and
+   (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    .mobile{
+      display: block;
+    }
+    .pc{
+      display: none;
+    }
+    .example-spacer {
+      flex: 1 1 auto;
+    }
+    .mat-toolbar.mat-primary{
+      background: #003100  !important;
+      color: #fff;
+    }
+     }
+
+     @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and
+     (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+      .mobile{
+        display: block;
+      }
+      .pc{
+        display: none;
+      }
+      .example-spacer {
+        flex: 1 1 auto;
+      }
+      .mat-toolbar.mat-primary{
+        background: #003100  !important;
+        color: #fff;
+      }
+
+      .userProfileContainer{
+        padding-left: 5px !important;
+      }
+
+      mat-drawer-content {
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      app-admin{
+        width: 100%;
+      }
+     }

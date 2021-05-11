@@ -1,0 +1,138 @@
+.div1{
+  float: left;
+  margin-top: 10px !important;
+  margin-left: 2%;
+  width: 25%;
+  border-style: outset;
+  border-width: thin;
+  border-color: black;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.div2{
+  float: right;
+  margin-top: 10px !important;
+  width: 69%;
+  margin-right: 2%;
+  border-style: outset;
+  border-width: thin;
+  border-color: black;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.div3{
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 18px !important;
+}
+
+.div4{
+  width: 20%;
+  margin-top: 10px !important;
+  float: left;
+  border-style: outset;
+  border-width: thin;
+  border-color: black;
+  margin-left: 2%;
+  margin-right: 2%;
+  background-color:white;
+}
+
+.mff1{
+  margin-left: 8%;
+  margin-right: 8%;
+  margin-top: 13px !important;
+  width: 84%;
+}
+
+.mff2{
+  margin-top: 13px !important;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 96%;
+}
+
+.table-container{
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+
+.mat-column-usertype{
+  text-align: left;
+  width: 11% !important;
+}
+
+.mat-column-firstname{
+  text-align: center;
+  width: 14% !important;
+}
+
+.mat-column-middlename{
+  text-align: center;
+  width: 14% !important;
+}
+
+.mat-column-lastname{
+  text-align: center;
+  width: 14% !important;
+}
+
+.mat-column-department{
+  text-align: center;
+  width: 10% !important;
+}
+
+.mat-column-position{
+  text-align: center;
+  width: 11% !important;
+}
+
+.mat-column-password{
+  text-align: center;
+  width: 11% !important;
+}
+
+.mat-column-email{
+  text-align: center;
+  width: 11% !important;
+}
+
+table {
+  width: 100%;
+}
+
+table tr.highlight {
+  background-color: #28a745;
+}
+
+.buttonformat{
+  background-color: #28a745;
+  color: white;
+  width: 84%;
+  margin-left: 8%;
+  margin-right: 8%;
+}
+
+.defaultform{
+  width: 96% !important;
+  margin-top: 1%;
+  margin-left: 2%;
+  margin-right: 2%;
+  background-color: #f0fd5f35;
+}
+
+.validation-message{
+  color: red;
+  font-size: smaller;
+  font-style: italic;
+}
+
+.success-message{
+  color: #28a745;
+  font-size: smaller;
+  font-style: italic;
+}

@@ -1,0 +1,748 @@
+
+<mat-card class="forms">
+  <mat-tab-group>
+
+    <div *ngIf="data.isTagalog == false">
+    <mat-tab label="Ordinance No. & Members">
+      <br>
+
+    <h1 mat-dialog-title>ORDINANCE NO:
+  <label class="diaRes">{{data.ordinanceNo}}</label></h1>
+
+      <div *ngIf="data.resolutionRefNo != ''">
+          <h3 class="refNo" mat-dialog-title>Resolution ref. NO:
+            <label class="diaRes">{{data.resolutionRefNo}}</label></h3>
+      </div>
+
+      <div *ngIf="data.resolutionRefNo == '' ">
+
+    </div>
+
+          <p class="fphrase"> EXCERPT FROM THE MINUTES OF THE REGULAR SESSION OF THE SANGGUNIANG BAYAN OF LIMAY, BATAAN,
+            HELD AT THE MUNICIPAL SESSION HALL ON {{data.oDate.slice(0, 10)}}
+              AT {{data.oTime}} AM IN THE MORNING</p>
+            <br>
+            <mat-grid-list cols="1" rowHeight="30:1"
+            *ngFor="let x of data.presMem.slice(1, 2)">
+              <mat-grid-tile>
+                <h2 style="margin-bottom: 0 px !important;"
+                *ngIf="x.memberPos == 'Municipal Vice Mayor'" >Presiding Officer</h2>
+                <h2 style="margin-bottom: 0 px !important;"
+                *ngIf="x.memberPos == 'S.B Member'">Acting Presiding Officer</h2>
+                </mat-grid-tile>
+
+                <mat-grid-tile >
+                    <h2>HON: {{x.memberName}}</h2>
+                    <h2 style="padding-left: 20px;">{{x.memberPos}}</h2>
+                  </mat-grid-tile>
+
+            </mat-grid-list>
+
+      <mat-grid-list cols="1" rowHeight="14:1">
+        <mat-grid-tile>
+          <h2 style="margin-bottom: -27px;">Present Members</h2>
+          </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="2" rowHeight="20:1" >
+      <mat-grid-tile  *ngFor="let x of data.presMem.slice(2, 15)">
+        <label>HON: {{x.memberName}}</label>
+        <label class="empPossition"> {{x.memberPos}}</label>
+      </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="1" rowHeight="14:1">
+        <mat-grid-tile>
+          <h2 style="margin-bottom: -27px;">Absent Members</h2>
+          </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="2" rowHeight="15:1">
+      <mat-grid-tile *ngFor="let i of data.absMem.slice(2, 15)">
+        <label>HON: {{i.memberName}}</label>
+        <label class="empPossition"> {{i.memberPos}}</label>
+      </mat-grid-tile>
+      </mat-grid-list>
+
+      <button class="submitForm resBtnS" style="float: right;"
+       mat-raised-button>
+            Send To Email</button>
+            <button  class="submitForm resBtnP"
+            mat-raised-button (click)="print()"
+            style="float: right;" color="primary">Print</button>
+
+      </mat-tab>
+      <mat-tab label="Ordinance Description">
+
+        <br>
+        <div *ngIf="data.resolutionRefNo != ''">
+        <h1 mat-dialog-title>Resolution Ref. No:
+          <label class="diaRes">{{data.resolutionRefNo}}</label></h1>
+          <div class="htmlContentR">
+            <p [froalaView]="data.resolutionDes"></p>
+                </div>
+              </div>
+
+              <div *ngIf="data.resolutionRefNo == ''">
+                      </div>
+            <br>
+
+            <h1 mat-dialog-title>Ordinance No:
+              <label class="diaRes">{{data.ordinanceNo}}</label></h1>
+            <div class="htmlContentR">
+              <p [froalaView]="data.ordinanceDes"></p>
+              </div>
+              <br>
+
+              <div *ngIf="data.approDes == null && undefined">
+            <h2  mat-dialog-title
+            class="appDescTdialog">:</h2></div>
+
+            <div *ngIf="data.approDes">
+              <h2  mat-dialog-title
+              class="appDescTdialog">Appropriations:</h2></div>
+            <div class="htmlContentR">
+              <p [innerHtml]="data.approDes"></p>
+              </div>
+
+              <h2 style="text-align:center; padding-bottom: 20px;">I HEREBY CERTIFY TO THE CORRECTNESS OF THE FOREGOING ORDINANCE</h2>
+              <mat-grid-list cols="2" rowHeight='13px' >
+                <mat-grid-tile >PREPARED BY:</mat-grid-tile>
+                <mat-grid-tile>ATTESTED BY:</mat-grid-tile>
+              </mat-grid-list>
+
+        <mat-grid-list cols="2" rowHeight="8:1">
+          <mat-grid-tile>
+            <form class="example-form">
+
+                <input type="text" class="inASsb" matInput readonly><h4  class="aMvm">{{data.oSecretary}}</h4>
+                <div style="text-align:center;">
+                  <mat-label style="color:gray; font-weight: 10;">Secretary to the Sangguniang Bayan</mat-label>
+              </div>
+
+            </form>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <form class="example-form">
+
+                <div *ngFor="let x of data.presMem.slice(1,2)"
+                style="text-align:center;">
+                <input type="text" class="inAMvm" matInput readonly ><h4 class="aMvm">{{data.oViceMayor}}</h4>
+
+                <mat-label  *ngIf="x.memberPos == 'Municipal Vice Mayor'"
+                 style="color:gray; font-weight: 10;">
+                 Municipal Vice Mayor (Presiding Officer)
+
+                </mat-label>
+
+                <mat-label  *ngIf="x.memberPos != 'Municipal Vice Mayor'"
+                style="color:gray; font-weight: 10;">
+                Acting Presiding Officer
+              </mat-label>
+              </div>
+
+            </form>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <br><br>
+        <h2 style="text-align:center; padding-bottom: 5px;">APPROVED BY THE SANGGUNIANG BAYAN MEMBERS:</h2>
+
+        <mat-grid-list cols="2" rowHeight="20:1" >
+          <mat-grid-tile  *ngFor="let x of data.presMem.slice(2, 15)">
+            <label>HON: {{x.memberName}}</label>
+            <label class="empPossition"> {{x.memberPos}}</label>
+          </mat-grid-tile>
+          </mat-grid-list>
+
+          <br><br>
+          <mat-grid-list cols="1" rowHeight='13px' >
+            <mat-grid-tile >APPROVED BY:</mat-grid-tile>
+          </mat-grid-list>
+
+      <mat-grid-list cols="1" rowHeight="20:1">
+        <mat-grid-tile>
+          <form class="example-form">
+              <input type="text" class="inASsb" matInput readonly><h4  class="aMvm">{{data.oMayor}}</h4>
+              <div style="text-align:center;">
+                <mat-label style="color:gray; font-weight: 10;">Municipal Mayor of Limay Bataan</mat-label>
+            </div>
+          </form>
+        </mat-grid-tile>
+        </mat-grid-list>
+<br><br>
+          <button class="submitForm resBtnS" style="float: right;"mat-raised-button>
+            Send To Email</button>
+            <button  class="submitForm resBtnP"
+            mat-raised-button (click)="print()"
+            style="float: right;" color="primary">Print</button>
+
+
+
+      </mat-tab>
+      <mat-tab label="Original Image File">
+        <div style="margin-top: 20px !important; margin-bottom: 50px !important;">
+          <button  class="submitForm resBtnP"
+            mat-raised-button
+            style="float: right;" color="warn" (click)="deletePDF()">X</button>
+        </div>
+        <div style="margin-top: 20px !important;">
+          <pdf-viewer [src]="pdfSrc"></pdf-viewer>
+        </div>
+        <div style="margin-top: 20px !important;" *ngIf="userDetails.usertype != this.usertypes[2]">
+          <button class="submitForm resBtnS" style="float: right;"
+          mat-raised-button>
+            Send To Email</button>
+            <button  class="submitForm resBtnP"
+            mat-raised-button
+            style="float: right;" color="primary"><a [href]="pdfSrc" target="_blank" style="color: white;">Print</a></button>
+        </div>
+      </mat-tab>
+      </div>
+
+
+     <!--START TAGALOG FORM-->
+      <div *ngIf="data.isTagalog == true">
+        <mat-tab label="Ordinance No. & Members">
+          <br>
+
+        <h1 mat-dialog-title>PAMBAYANG ORDINANSA BLG:
+      <label class="diaRes">{{data.ordinanceNo}}</label></h1>
+
+          <h3 *ngIf="data.resolutionRefNo != null" class="refNo" mat-dialog-title>KAPASIYAHAN BLG:
+            <label class="diaRes">{{data.resolutionRefNo}}</label></h3>
+
+            <h3 *ngIf="data.resolutionRefNo == null " mat-dialog-title>
+              <label></label></h3>
+
+              <p class="fphrase"> HALAW SA KATITIKAN NG PANGKARANIWANG PULONG NG SANGGUNIANG BAYAN NG LIMAY,
+                 BATAAN NA GINANAP SA BATASAN BAYAN NG LIMAY, BATAAN NOONG IKA {{data.oDate.slice(0, 10)}}
+                  SA GANAP NA IKA  {{data.oTime}} NG UMAGA</p>
+                <br>
+                <mat-grid-list cols="1" rowHeight="30:1"
+                *ngFor="let x of data.presMem.slice(1, 2)">
+                  <mat-grid-tile>
+                    <h2 style="margin-bottom: 0 px;"
+                    *ngIf="x.memberPos == 'Municipal Vice Mayor'" >Pangulo</h2>
+                    <h2 style="margin-bottom: 0 px;"
+                    *ngIf="x.memberPos != 'Municipal Vice Mayor'">Pansamantalang Tiga Pangulo</h2>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile >
+                        <h2>KGG: {{x.memberName}}</h2>
+                        <h2 style="padding-left: 20px;">{{x.memberPos}}</h2>
+                      </mat-grid-tile>
+
+                </mat-grid-list>
+
+          <mat-grid-list cols="1" rowHeight="14:1">
+            <mat-grid-tile>
+              <h2 style="margin-bottom: -27px;">DUMALO</h2>
+              </mat-grid-tile>
+          </mat-grid-list>
+
+          <mat-grid-list cols="2" rowHeight="20:1" >
+          <mat-grid-tile  *ngFor="let x of data.presMem.slice(2, 15)">
+            <label>KGG: {{x.memberName}}</label>
+            <label class="empPossition"> {{x.memberPos}}</label>
+          </mat-grid-tile>
+          </mat-grid-list>
+
+          <mat-grid-list cols="1" rowHeight="14:1">
+            <mat-grid-tile>
+              <h2 style="margin-bottom: -27px;">DI-DUMALO</h2>
+              </mat-grid-tile>
+          </mat-grid-list>
+
+          <mat-grid-list cols="2" rowHeight="15:1">
+          <mat-grid-tile *ngFor="let i of data.absMem.slice(1, 15)">
+            <label>KGG: {{i.memberName}}</label>
+            <label class="empPossition"> {{i.memberPos}}</label>
+          </mat-grid-tile>
+          </mat-grid-list>
+
+          <button class="submitForm resBtnS" style="float: right;"
+           mat-raised-button>
+                Send To Email</button>
+                <button  class="submitForm resBtnP"
+                mat-raised-button (click)="printTagalog()"
+                style="float: right;" color="primary">Print</button>
+
+          </mat-tab>
+          <mat-tab label="Ordinance Description">
+
+            <br>
+            <div *ngIf="data.resolutionRefNo != ''">
+            <h1 mat-dialog-title>KAPASIYAHAN BLG:
+              <label class="diaRes">{{data.resolutionRefNo}}</label></h1>
+              <div class="htmlContentR">
+                <p [froalaView]="data.resolutionDes"></p>
+                    </div>
+                  </div>
+
+                  <div *ngIf="data.resolutionRefNo == ''">
+                          </div>
+                <br>
+
+                <h1 mat-dialog-title>PAMBAYANG ORDINANSYA BLG:
+                  <label class="diaRes">{{data.ordinanceNo}}</label></h1>
+                <div class="htmlContentR">
+                  <p [froalaView]="data.ordinanceDes"></p>
+                  </div>
+                  <br>
+
+                  <div *ngIf="data.approDes == null && undefined">
+                <h2  mat-dialog-title
+                class="appDescTdialog">:</h2></div>
+
+                <div *ngIf="data.approDes">
+                  <h2  mat-dialog-title
+                  class="appDescTdialog">Appropriations:</h2></div>
+                <div class="htmlContentR">
+                  <p [froalaView]="data.approDes"></p>
+                  </div>
+
+                  <h2 style="text-align:center; padding-bottom: 20px;">PINATUTUNAYAN KO ANG KAWASTUHAN NG KATITIKANG NASASAAD SA ITAAS.</h2>
+                  <mat-grid-list cols="2" rowHeight='15px' >
+                    <mat-grid-tile >PREPARED BY:</mat-grid-tile>
+                    <mat-grid-tile>PINATITIBAYAN:</mat-grid-tile>
+                  </mat-grid-list>
+
+            <mat-grid-list cols="2" rowHeight="8:1">
+              <mat-grid-tile>
+                <form class="example-form">
+
+                    <input type="text" class="inASsb" matInput readonly><h4  class="aMvm">{{data.oSecretary}}</h4>
+                    <div style="text-align:center;">
+                      <mat-label style="color:gray; font-weight: 10;">Kalihim ng Sangguniang Bayan</mat-label>
+                  </div>
+                </form>
+              </mat-grid-tile>
+
+              <mat-grid-tile>
+                <form class="example-form">
+                    <div  *ngFor="let x of data.presMem.slice(1,2)"
+                    style="text-align:center;">
+                    <input type="text" class="inAMvm" matInput readonly ><h4 class="aMvm">{{data.oViceMayor}}</h4>
+
+                    <mat-label *ngIf="x.memberPos == 'Municipal Vice Mayor'"
+                    style="color:gray; font-weight: 10;">Pangalawang Punong Bayan (Tiga Pangulo)
+                  </mat-label>
+
+                    <mat-label *ngIf="x.memberPos != 'Municipal Vice Mayor'"
+                    style="color:gray; font-weight: 10;">Pansamantalang Tiga Pangulo
+                  </mat-label>
+                  </div>
+                </form>
+              </mat-grid-tile>
+            </mat-grid-list>
+            <br><br>
+            <h2 style="text-align:center; padding-bottom: 5px;">SANGGUNIANG BAYAN:</h2>
+
+            <mat-grid-list cols="2" rowHeight="20:1" >
+              <mat-grid-tile  *ngFor="let x of data.presMem.slice(2, 15)">
+                <label>KGG: {{x.memberName}}</label>
+                <label class="empPossition"> {{x.memberPos}}</label>
+              </mat-grid-tile>
+              </mat-grid-list>
+
+          <br><br>
+              <mat-grid-list cols="1" rowHeight='13px'>
+                <mat-grid-tile>
+                  PINAGTITIBAY:
+                </mat-grid-tile>
+              </mat-grid-list>
+    <mat-grid-list cols="1" rowHeight="37:2">
+      <mat-grid-tile>
+        <form class="example-form">
+            <input type="text" class="inASsb" matInput readonly><h4  class="aMvm">{{data.oMayor}}</h4>
+            <div style="text-align:center;">
+              <mat-label style="color:gray; font-weight: 10;">PUNONG BAYAN</mat-label>
+          </div>
+        </form>
+      </mat-grid-tile>
+      </mat-grid-list>
+
+            <br>
+              <button class="submitForm resBtnS" style="float: right;"mat-raised-button>
+                Send To Email</button>
+                <button  class="submitForm resBtnP"
+                mat-raised-button (click)="printTagalog()"
+                style="float: right;" color="primary">Print</button>
+
+                <div class="hiddenFormat" id="component1">
+                      //Here I have all the HTML source
+                      </div>
+
+          </mat-tab>
+          <mat-tab label="Original Image File">
+            <div style="margin-top: 20px !important; margin-bottom: 50px !important;">
+              <button  class="submitForm resBtnP"
+                mat-raised-button
+                style="float: right;" color="warn" (click)="deletePDF()">X</button>
+            </div>
+            <div style="margin-top: 20px !important;">
+              <pdf-viewer [src]="pdfSrc"></pdf-viewer>
+            </div>
+            <div style="margin-top: 20px !important;" *ngIf="userDetails.usertype != this.usertypes[2]">
+              <button class="submitForm resBtnS" style="float: right;"
+              mat-raised-button>
+                Send To Email</button>
+                <button  class="submitForm resBtnP"
+                mat-raised-button
+                style="float: right;" color="primary"><a [href]="pdfSrc" target="_blank" style="color: white;">Print</a></button>
+            </div>
+          </mat-tab>
+      </div>
+    <!--END TAGALOG FORM-->
+      </mat-tab-group>
+
+</mat-card>
+
+<!--START PRINT SECTION TAGALOG FORM-->
+<div id="print-section-tagalog" style="display: none;">
+  <img class="header" [src]="header">
+<br><br><br>
+<div class="divider"></div>
+<p class="printFpara">
+  HALAW SA KATITIKAN NG PANGKARANIWANG PULONG NG SANGGUNIANG BAYAN NG LIMAY,
+  BATAAN NA GINANAP SA BATASAN BAYAN NG LIMAY, BATAAN NOONG IKA {{data.oDate.slice(0, 10)}}
+   SA GANAP NA IKA  {{data.oTime}} NG UAMAGA
+</p>
+
+  <h5 class="padsTagalog">DUMALO:</h5>
+
+    <table class="padsTagalogTable" style="width:100%;">
+      <tr  *ngFor="let x of data.presMem.slice(1,2)">
+        <td>KGG: {{x.memberName}}</td>
+        <td style="text-align: center;">
+          {{x.memberPos}}</td>
+      </tr>
+
+      <tr *ngFor="let x of data.presMem.slice(1,2)">
+        <td></td>
+        <td *ngIf="x.memberPos == 'Municipal Vice Mayor'" style="text-align: center;">
+          (Pansamantalang Tiga Pangulo)</td>
+
+          <td *ngIf="x.memberPos == 'S.B Member'" style="text-align: center;">
+            (Pansamantalang Tiga Pangulo)</td>
+      </tr>
+
+      <tr  *ngFor="let x of data.presMem.slice(2,15)">
+        <td>KGG: {{x.memberName}}</td>
+        <td style="text-align: center;">
+          {{x.memberPos}}</td>
+      </tr>
+      <tr>
+        <td style="padding-top: 20px;">
+          <h5>DI-DUMALO:</h5></td>
+      </tr>
+      <tr  *ngFor="let x of data.absMem.slice(1,15)">
+        <td>KGG: {{x.memberName}}</td>
+        <td style="text-align: center;">
+          {{x.memberPos}}</td>
+      </tr>
+    </table>
+    <br>
+  <div *ngIf="data.resolutionRefNo != ''">
+    <h4 mat-dialog-title class="resNo">
+      KAPASIYAHAN BLG:
+      <label class="diaRes ">{{data.resolutionRefNo}}</label>
+    </h4>
+
+    <div class="htmlContentR">
+      <p [froalaView]="data.resolutionDes"></p>
+      </div>
+  </div>
+    <h4 mat-dialog-title class="resNo">
+      PAMBAYANG ORDINANSYA BLG:
+      <label class="diaRes ">{{data.ordinanceNo}</label>
+    </h4>
+
+    <div class="htmlContentR">
+      <p [froalaView]="data.ordinanceDes"></p>
+      </div>
+
+      <div *ngIf="data.ordApproDes != ''" class="htmlContentR">
+        <p [froalaView]="data.approDes"></p>
+        </div>
+    <br>
+      <div class="divider2" style="min-height: 0px !important;"></div>
+      <br>
+
+    <p class="printFpara">
+      PINATUTUNAYAN KO ANG KAWASTUHAN NG KATITIKANG NASASAAD SA ITAAS
+    </p>
+<br>
+
+<table class="center"  style="width:100%;">
+  <tr>
+    <th>{{data.oSecretary}}</th>
+    <th>{{data.oViceMayor}}</th>
+  </tr>
+  <tr style="text-align: center;">
+    <td>Administrative Officer</td>
+    <td>PANGALAWANG PUNONG BAYAN</td>
+  </tr>
+  <tr style="text-align: center;">
+    <td>KALIHIM NG SANGGUNIANG BAYAN</td>
+    <td>(TAGA PANGULO)</td>
+  </tr>
+</table>
+
+<br>
+
+<!--Multiple Approved Sb Members-->
+
+<p class="printFpara">SANGGUNIANG BAYAN:</p>
+<br>
+
+<table  style="width:100%;">
+  <tr>
+    <th *ngFor="let x of data.presMem.slice(2, 4)">
+      {{x.memberName}}
+    </th>
+  </tr>
+  <tr>
+    <td style="text-align: center !important; padding-bottom: 10px;"
+    *ngFor="let x of data.presMem.slice(2, 4)">
+      {{x.memberPos}}
+    </td>
+  </tr>
+
+  <tr>
+    <th *ngFor="let x of data.presMem.slice(4, 6)">
+      {{x.memberName}}
+    </th>
+  </tr>
+  <tr>
+    <td style="text-align: center !important; padding-bottom: 10px"
+    *ngFor="let x of data.presMem.slice(4, 6)">
+      {{x.memberPos}}
+    </td>
+  </tr>
+
+  <tr>
+    <th *ngFor="let x of data.presMem.slice(6, 8)">
+      {{x.memberName}}
+    </th>
+  </tr>
+  <tr>
+    <td style="text-align: center !important; padding-bottom: 10px"
+    *ngFor="let x of data.presMem.slice(6, 8)">
+      {{x.memberPos}}
+    </td>
+  </tr>
+
+  <tr>
+    <th *ngFor="let x of data.presMem.slice(8, 10)">
+      {{x.memberName}}
+    </th>
+  </tr>
+  <tr>
+    <td style="text-align: center !important; padding-bottom: 10px"
+    *ngFor="let x of data.presMem.slice(8, 10)">
+      {{x.memberPos}}
+    </td>
+  </tr>
+
+  <tr>
+    <th *ngFor="let x of data.presMem.slice(10, 12)">
+      {{x.memberName}}
+    </th>
+  </tr>
+  <tr>
+    <td style="text-align: center !important; padding-bottom: 10px"
+    *ngFor="let x of data.presMem.slice(10, 12)">
+      {{x.memberPos}}
+    </td>
+  </tr>
+
+</table>
+<br>
+
+<table class="center"  style="width:100%;">
+  <tr>
+    <th>{{data.ordiMayor}}</th>
+  </tr>
+  <tr style="text-align: center;">
+    <td>PUNONG BAYAN</td>
+  </tr>
+</table>
+
+</div>
+
+<!--END PRONT SECTION TAGALOG FROM-->
+
+<!--PRINT SECTIOn ENGLISH FORMAT-->
+<div id="print-section" style="display: none;">
+  <img class="header" [src]="header">
+<br><br><br>
+<div class="divider"></div>
+<p class="printFpara">
+  EXCERPT FROM THE MINUTES OF THE SPECIAL SESSION OF THE SANGGUNIANG BAYAN
+  OF LIMAY, BATAAN HELD AT THE BATASANG BAYAN, LIMAY, BATAAN ON "DATE HERE"
+  AT "TIME HERE" IN THE MORNING
+</p>
+
+<h5 class="padsTagalog">PRESENT:</h5>
+
+<table class="padsTagalogTable" style="width:100%;">
+  <tr  *ngFor="let x of data.presMem.slice(1,2)">
+        <td>HON: {{x.memberName}}</td>
+        <td style="text-align: center;">
+          {{x.memberPos}}</td>
+  </tr>
+      <tr *ngFor="let x of data.presMem.slice(1,2)">
+        <td></td>
+        <td *ngIf="x.memberPos == 'Municipal Vice Mayor'" style="text-align: center;">
+          (Presiding Officer)</td>
+
+          <td *ngIf="x.memberPos == 'S.B Member'" style="text-align: center;">
+            (Acting Presiding Officer)</td>
+        </tr>
+
+        <tr  *ngFor="let x of data.presMem.slice(2,15)">
+          <td>HON: {{x.memberName}}</td>
+          <td style="text-align: center;">
+            {{x.memberPos}}</td>
+        </tr>
+        <tr>
+          <td style="padding-top: 20px;">
+            <h5>ABSENT:</h5></td>
+        </tr>
+      <tr  *ngFor="let x of data.absMem.slice(1,15)">
+        <td>HON: {{x.memberName}}</td>
+        <td style="text-align: center;">
+          {{x.memberPos}}</td>
+      </tr>
+    </table>
+
+    <div *ngIf="data.resolutionRefNo != ''">
+      <h4 mat-dialog-title class="resNo">
+        Resolution Ref. NO:
+        <label class="diaRes ">sample123</label>
+      </h4>
+
+      <div class="htmlContentR">
+        <!--<p [froalaView]="data.resolutionDes"></p>-->
+          <p>RES DESCRIPT HERE</p>
+        </div>
+    </div>
+
+  <h4 mat-dialog-title class="resNo">
+    Ordinance NO:
+    <label class="diaRes ">{{data.ordinanceNo}}</label>
+  </h4>
+
+    <div class="htmlContentR">
+      <p [froalaView]="data.ordinanceDes"></p>
+      </div>
+
+      <div *ngIf="data.approDes != ''" class="htmlContentR">
+        <!--<p [froalaView]="data.approDes"></p>-->
+          <p>APPRO DESCRIPT HERE</p>
+        </div>
+
+ <div class="divider" style="min-height: 0px !important;"></div>
+    <br>
+
+    <p class="printFpara">
+      I HEREBY CERTIFY TO THE CORRECTNESS OF THE FOREGOING RESOLUTION
+    </p>
+<br>
+
+<table class="center"  style="width:100%;">
+  <tr>
+    <th>{{data.oSecretary}}</th>
+    <th>{{data.oViceMayor}}</th>
+  </tr>
+  <tr style="text-align: center;">
+    <td>Administrative Officer</td>
+    <td>Municipal Vice Mayor</td>
+  </tr>
+  <tr style="text-align: center;">
+    <td>Acting Secretary to the SB</td>
+    <td>(Presiding Officer)</td>
+  </tr>
+</table>
+
+
+<br>
+<!--Multiple Approved Sb Members-->
+<p class="printFpara">APPROVED BY THE SANGGUNIANG BAYAN MEMBERS:</p>
+<br>
+
+<table  style="width:100%;">
+  <tr>
+    <th *ngFor="let x of data.presMem.slice(2, 4)">
+      {{x.memberName}}
+    </th>
+  </tr>
+  <tr>
+    <td style="text-align: center !important; padding-bottom: 10px;"
+    *ngFor="let x of data.presMem.slice(2, 4)">
+      {{x.memberPos}}
+    </td>
+  </tr>
+
+  <tr>
+    <th *ngFor="let x of data.presMem.slice(4, 6)">
+      {{x.memberName}}
+    </th>
+  </tr>
+  <tr>
+    <td style="text-align: center !important; padding-bottom: 10px"
+    *ngFor="let x of data.presMem.slice(4, 6)">
+      {{x.memberPos}}
+    </td>
+  </tr>
+
+  <tr>
+    <th *ngFor="let x of data.presMem.slice(6, 8)">
+      {{x.memberName}}
+    </th>
+  </tr>
+  <tr>
+    <td style="text-align: center !important; padding-bottom: 10px"
+    *ngFor="let x of data.presMem.slice(6, 8)">
+      {{x.memberPos}}
+    </td>
+  </tr>
+
+  <tr>
+    <th *ngFor="let x of data.presMem.slice(8, 10)">
+      {{x.memberName}}
+    </th>
+  </tr>
+  <tr>
+    <td style="text-align: center !important; padding-bottom: 10px"
+    *ngFor="let x of data.presMem.slice(8, 10)">
+      {{x.memberPos}}
+    </td>
+  </tr>
+
+  <tr>
+    <th *ngFor="let x of data.presMem.slice(10, 12)">
+      {{x.memberName}}
+    </th>
+  </tr>
+  <tr>
+    <td style="text-align: center !important; padding-bottom: 10px"
+    *ngFor="let x of data.presMem.slice(10, 12)">
+      {{x.memberPos}}
+    </td>
+  </tr>
+
+</table>
+<br>
+
+<table class="center"  style="width:100%;">
+  <tr>
+    <th>{{data.oMayor}}</th>
+  </tr>
+  <tr style="text-align: center;">
+    <td>MUNICIPAL MAYOR</td>
+  </tr>
+</table>
+</div>

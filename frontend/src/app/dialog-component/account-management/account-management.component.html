@@ -1,0 +1,74 @@
+
+<div class="dialogdivformat">
+
+  <form #dialogForm="ngForm" (ngSubmit)="dialogForm.valid && updateForm(dialogForm)">
+
+    <mat-card class="mc-format">
+
+      <h2 style="color: #28a745;margin-top: 15px; margin-left: 2%;">Edit User</h2>
+
+      <mat-form-field class="mff-format1">
+        <mat-label>ID:</mat-label>
+        <input  id="idInput" matInput name="_id" [ngModel]="data._id" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="mff-format2">
+        <mat-label>User Type:</mat-label>
+        <mat-select id="utSelect" name="usertype" [(ngModel)]="data.usertype">
+          <mat-option *ngFor="let usertype of usertypes" [value]="usertype">{{ usertype }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="mff-format3">
+        <mat-label>First Name:</mat-label>
+        <input id="fnInput" matInput name="firstname" [(ngModel)]="data.firstname">
+      </mat-form-field>
+
+      <mat-form-field class="mff-format3">
+        <mat-label>Middle Name:</mat-label>
+        <input id="mnInput" matInput name="middlename" [(ngModel)]="data.middlename">
+      </mat-form-field>
+
+      <mat-form-field class="mff-format3">
+        <mat-label>Last Name:</mat-label>
+        <input id="lnInput" matInput name="lastname" [(ngModel)]="data.lastname">
+      </mat-form-field>
+
+      <mat-form-field class="mff-format3">
+        <mat-label>Department:</mat-label>
+        <mat-select id="depSelect" name="department" [(ngModel)]="data.department">
+          <mat-option *ngFor="let department of departments" [value]="department">{{ department }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="mff-format3">
+        <mat-label>Position:</mat-label>
+        <input id="posInput" matInput name="position" [(ngModel)]="data.position">
+      </mat-form-field>
+
+      <mat-form-field class="mff-format3">
+        <mat-label>Email:</mat-label>
+        <input id="eInput" matInput name="email" [(ngModel)]="data.email">
+      </mat-form-field>
+
+      <mat-form-field class="mff-format3">
+        <mat-label>Password:</mat-label>
+        <input id="pwInput" matInput type="password" name="password" [(ngModel)]="data.password" minlength="4" required
+        [ngClass]="{'invalid-textbox' :dialogForm.submitted}">
+      </mat-form-field>
+
+      <div>
+        <label class="validation-message" style="margin-left: 8%;" *ngIf="showErrorMessage1">Password is required.</label>
+        <label class="validation-message" style="margin-left: 8%;" *ngIf="showErrorMessage2">Password must at least be 4 characters.</label>
+      </div>
+
+      <button mat-raised-button class="buttonformat" type="submit" (click)="updateForm(dialogForm)">UPDATE</button>
+
+      <button mat-raised-button class="buttonformat2" (click)="deleteForm()">DELETE</button>
+
+    </mat-card>
+
+  </form>
+
+</div>
+

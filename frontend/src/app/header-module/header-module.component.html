@@ -1,0 +1,57 @@
+<div class="pc">
+<header class="p-3 nav text-white">
+  <div class="">
+    <div class="d-flex flex-wrap ">
+
+      <h2 href="#" class="headerLabel">
+        Limay Legislative Records Library System
+      </h2>
+
+
+      <div class="text-end right">
+        <label class="userName">{{this.userDetails.firstname}}</label>
+        <button type="button" class="btn btn-warning"
+        (click)="onLogout()" value="Logout">Logout</button>
+      </div>
+    </div>
+  </div>
+</header>
+<app-admin></app-admin>
+</div>
+
+<div class="mobile">
+
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>SBLLRLS</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon" (click)="drawer.toggle()"
+      aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-drawer-container class="example-container">
+    <mat-drawer #drawer position="end">
+    <div class="userProfileContainer">
+      <br>
+      <div>
+        <label class="userName">{{this.userDetails.firstname}}</label>
+      </div>
+      <div class="">
+        <button type="button" class="btn btn-warning"
+        (click)="onLogout()" value="Logout">Logout</button>
+      </div>
+    </div>
+
+    </mat-drawer>
+    <mat-drawer-content>
+
+      <app-admin></app-admin>
+
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+
+</div>

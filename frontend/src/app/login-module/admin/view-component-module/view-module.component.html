@@ -1,0 +1,240 @@
+<mat-card class="forms" >
+
+  <!--resolution-->
+  <h2 style="color: #28a745;margin-bottom: -6px;">Resolutions</h2>
+  <mat-form-field  style="width: 100%">
+    <mat-label>Search Resolution</mat-label>
+    <input matInput id="search-text" aria-describedby="search-text"
+        [(ngModel)]="searchText" placeholder="Enter text to search">
+      </mat-form-field>
+
+        <div *ngIf="searchText == ''">
+          <mat-accordion >
+              <mat-expansion-panel *ngFor="let x of selectedResultR | appFilter: searchText" (afterExpand)="selectedRitem = x ">
+                  <mat-expansion-panel-header style="margin-top: 7px;">
+                    <mat-panel-title >
+                    <span class="Text">
+                          <label> Resolution No: </label> &nbsp;
+                          {{x.resolutionNo}}
+                        </span>
+                        <span class="link" style="opacity: 0.7;margin-top: -10px;">
+                          <label> Classification: </label> &nbsp;
+                          {{x.rClassification | slice:0:21}}
+                    </span>
+                    </mat-panel-title>
+                    <mat-panel-description >
+
+                      <!--<p [innerHTML]="x.resolutionDes | slice:0:88"></p>-->
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <p class="viewDesc" style="text-align: center !important;" [froalaView]="x.resolutionDes.slice(0, 500)"></p>
+
+                  <div  *ngIf="this.userDetails.usertype == 'Admin'">
+                    <button class="submitFormV resBtnV" (click)="viewMoreR()"
+                    mat-raised-button>View More
+                  </button>
+                      <br>
+                      <button class="submitFormV editBtn" (click)="editReso()"
+                     mat-raised-button>Edit</button>
+                     <br>
+                     <button class="submitFormV delBtn" (click)="deleteReso()"
+                     mat-raised-button>Delete</button>
+                  </div>
+
+                  <div  *ngIf="this.userDetails.usertype == 'Encoder'">
+                    <button class="submitFormV resBtnV" (click)="viewMoreR()"
+                    mat-raised-button>View More</button>
+                      <br>
+                      <button class="submitFormV editBtn" (click)="editReso()"
+                     mat-raised-button>Edit</button>
+                     <br>
+                     <button class="submitFormV delBtn" (click)="deleteReso()"
+                     mat-raised-button>Delete</button>
+                  </div>
+
+                  <div  *ngIf="this.userDetails.usertype == 'User'">
+                    <button class="submitFormV resBtnV" (click)="viewMoreR()"
+                    mat-raised-button>View More</button>
+                  </div>
+
+                </mat-expansion-panel>
+
+          </mat-accordion>
+            <mat-paginator #paginator [length]="lengthR"
+              [pageSize]="pageSizeR"
+                [pageSizeOptions]="pageSizeOptionsR"
+                  (page)="getDataR($event)"
+                    showFirstLastButtons></mat-paginator>
+        </div>
+        <div *ngIf="searchText != ''">
+          <mat-accordion >
+              <mat-expansion-panel *ngFor="let x of resultsR | appFilter: searchText" (afterExpand)="selectedRitem = x ">
+                  <mat-expansion-panel-header style="margin-top: 7px;">
+                    <mat-panel-title >
+                    <span class="Text">
+                          <label> Resolution No: </label> &nbsp;
+                          {{x.resolutionNo}}
+                        </span>
+                        <span class="link" style="opacity: 0.7;margin-top: -10px;">
+                          <label> Classification: </label> &nbsp;
+                          {{x.rClassification | slice:0:21}}
+                    </span>
+                    </mat-panel-title>
+                    <mat-panel-description >
+                      <!--<p [innerHTML]="x.resolutionDes | slice:0:87"></p>-->
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <p style="text-align: center !important;" [froalaView]="x.resolutionDes.slice(0, 500)"></p>
+
+                  <div  *ngIf="this.userDetails.usertype == 'Admin'">
+                    <button class="submitFormV resBtnV" (click)="viewMoreR()"
+                    mat-raised-button>View More</button>
+                      <br>
+                      <button class="submitFormV editBtn" (click)="editReso()"
+                     mat-raised-button>Edit</button>
+                     <br>
+                     <button class="submitFormV delBtn" (click)="deleteReso()"
+                     mat-raised-button>Delete</button>
+                  </div>
+
+                  <div  *ngIf="this.userDetails.usertype == 'Encoder'">
+                    <button class="submitFormV resBtnV" (click)="viewMoreR()"
+                    mat-raised-button>View More</button>
+                      <br>
+                      <button class="submitFormV editBtn" (click)="editReso()"
+                     mat-raised-button>Edit</button>
+                     <br>
+                     <button class="submitFormV delBtn" (click)="deleteReso()"
+                     mat-raised-button>Delete</button>
+                  </div>
+
+                  <div  *ngIf="this.userDetails.usertype == 'User'">
+                    <button class="submitFormV resBtnV" (click)="viewMoreR()"
+                    mat-raised-button>View More</button>
+                  </div>
+
+                </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+<br>
+
+<!--ordinance-->
+
+<br>
+<h2 style="color: #28a745;margin-bottom: -6px;">Ordinances</h2>
+<mat-form-field  style="width: 100%">
+  <mat-label>Search Ordinance</mat-label>
+  <input matInput id="search-text" aria-describedby="search-text"
+      [(ngModel)]="searchTextord" placeholder="Enter text to search">
+    </mat-form-field>
+
+        <div *ngIf="searchTextord == ''">
+          <mat-accordion>
+              <mat-expansion-panel  *ngFor="let i of selectedResultO  | appFilter: searchTextord" (afterExpand)="selectedOitem = i ">
+                  <mat-expansion-panel-header >
+                    <mat-panel-title >
+                    <span class="Text">
+                          <label> Ordinance No: </label> &nbsp;
+                          {{i.ordinanceNo}}
+                        </span>
+                        <span class="link" style="opacity: 0.7;margin-top: -10px;">
+                          <label> Classification: </label> &nbsp;
+                          {{i.oClassification}}
+                    </span>
+                    </mat-panel-title>
+                  <mat-panel-description>
+                        <!--<p [froalaView]="i.ordinanceDes.slice(0, 300)"></p>-->
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p style="text-align: center !important;" [froalaView]="i.ordinanceDes.slice(0, 500)"></p>
+
+                  <div  *ngIf="this.userDetails.usertype == 'Admin'">
+                    <button class="submitFormV resBtnV" (click)="viewMoreO()"
+                    mat-raised-button>View More</button>
+                      <br>
+                      <button class="submitFormV editBtn" (click)="editOrdi()"
+                     mat-raised-button>Edit</button>
+                     <br>
+                     <button class="submitFormV delBtn" (click)="deleteOrd()"
+                     mat-raised-button>Delete</button>
+                  </div>
+
+                  <div  *ngIf="this.userDetails.usertype == 'Encoder'">
+                    <button class="submitFormV resBtnV" (click)="viewMoreO()"
+                    mat-raised-button>View More</button>
+                      <br>
+                      <button class="submitFormV editBtn" (click)="editOrdi()"
+                     mat-raised-button>Edit</button>
+                     <br>
+                     <button class="submitFormV delBtn" (click)="deleteOrd()"
+                     mat-raised-button>Delete</button>
+                  </div>
+
+                  <div  *ngIf="this.userDetails.usertype == 'User'">
+                    <button class="submitFormV resBtnV" (click)="viewMoreO()"
+                    mat-raised-button>View More</button>
+                  </div>
+
+                </mat-expansion-panel>
+            </mat-accordion>
+              <mat-paginator #paginator [length]="lengthO"
+                [pageSize]="pageSizeO"
+                  [pageSizeOptions]="pageSizeOptionsO"
+                    (page)="getDataO($event)"
+                      showFirstLastButtons></mat-paginator>
+      </div>
+
+      <div *ngIf="searchTextord != ''">
+        <mat-accordion >
+            <mat-expansion-panel *ngFor="let i of resultsO  | appFilter: searchTextord" (afterExpand)="selectedOitem = i ">
+                <mat-expansion-panel-header style="margin-top: 7px;">
+                  <mat-panel-title >
+                  <span class="Text">
+                        <label> Ordinance No: </label> &nbsp;
+                        {{i.ordinanceNo}}
+                      </span>
+                      <span class="link" style="opacity: 0.7;margin-top: -10px;">
+                        <label> Classification: </label> &nbsp;
+                        {{i.oClassification}}
+                  </span>
+                  </mat-panel-title>
+
+                  <mat-panel-description >
+                    <!--<p [froalaView]="i.ordinanceDes.slice(0, 300)"></p>-->
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p style="text-align: center !important;" [froalaView]="i.ordinanceDes.slice(0, 490)">SSS</p>
+
+                <div  *ngIf="this.userDetails.usertype == 'Admin'">
+                  <button class="submitFormV resBtnV" (click)="viewMoreO()"
+                  mat-raised-button>View More</button>
+                    <br>
+                    <button class="submitFormV editBtn" (click)="editOrdi()"
+                   mat-raised-button>Edit</button>
+                   <br>
+                   <button class="submitFormV delBtn" (click)="deleteOrd()"
+                   mat-raised-button>Delete</button>
+                </div>
+
+                <div  *ngIf="this.userDetails.usertype == 'Encoder'">
+                  <button class="submitFormV resBtnV" (click)="viewMoreO()"
+                  mat-raised-button>View More</button>
+                    <br>
+                    <button class="submitFormV editBtn" (click)="editOrdi()"
+                   mat-raised-button>Edit</button>
+                   <br>
+                   <button class="submitFormV delBtn" (click)="deleteOrd()"
+                   mat-raised-button>Delete</button>
+                </div>
+
+                <div  *ngIf="this.userDetails.usertype == 'User'">
+                  <button class="submitFormV resBtnV" (click)="viewMoreO()"
+                  mat-raised-button>View More</button>
+                </div>
+
+              </mat-expansion-panel>
+          </mat-accordion>
+    </div>
+
+              </mat-card>
+            <br><br>
